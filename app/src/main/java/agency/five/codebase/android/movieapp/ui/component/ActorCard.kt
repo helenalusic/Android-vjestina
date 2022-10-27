@@ -29,13 +29,13 @@ fun ActorCard(
     modifier: Modifier = Modifier,
 ) {
 
-        {
+
 }
 @Preview
 @Composable
 private fun ActorCardPreview() {
     val actor = MoviesMock.getActor()
-    val viewState = ActorCardViewState(actor.name, actor.character, actor.imageUrl)
+    val viewState = ActorCardViewState(actor.name, actor.character, actor.imageUrl.toString())
 
-    ActorCard(actorCardViewState = viewState)
+    ActorCard(actorCardViewState)
 }
