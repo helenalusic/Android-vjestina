@@ -29,7 +29,9 @@ sealed class MovieCategoryLabelTextViewState {
 
 @Composable
 fun MovieCategoryLabel(
-    labelViewState: MovieCategoryLabelViewState
+    labelViewState: MovieCategoryLabelViewState,
+    onItemClick: (MovieCategoryLabelViewState) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     if (labelViewState.isSelected) {
         TextSelected(labelViewState)

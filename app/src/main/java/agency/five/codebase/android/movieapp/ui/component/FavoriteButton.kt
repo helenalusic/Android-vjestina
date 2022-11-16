@@ -21,7 +21,9 @@ import androidx.compose.runtime.mutableStateOf
 
 @Composable
 fun FavoriteButton(
-    modifier: Modifier = Modifier
+    isFavorite: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
 
     var isFavorite by rememberSaveable { mutableStateOf(true) }
@@ -45,5 +47,9 @@ fun FavoriteButton(
 @Preview(showBackground = true)
 @Composable
 fun FavoriteButtonPreview() {
-    FavoriteButton()
+    var isFavorite by remember { mutableStateOf(true) }
+    FavoriteButton(
+        isFavorite = isFavorite,
+        onClick = { isFavorite = !isFavorite }
+    )
 }

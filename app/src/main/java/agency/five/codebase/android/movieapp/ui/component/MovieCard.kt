@@ -17,10 +17,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 
+data class MovieCardViewState(
+    val imageUrl: String?,
+    val title: String
+)
+
 @Composable
 fun MovieCard(
-    movie: Movie,
-    modifier: Modifier = Modifier
+    item: MovieCardViewState,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    onFavouriteButtonClick: () -> Unit
 ) {
     Card(
         modifier = modifier
@@ -35,9 +42,9 @@ fun MovieCard(
             contentAlignment = Alignment.TopStart
         ) {
             AsyncImage(
-                model = movie.imageUrl,
+                model = item.imageUrl,
                 placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                contentDescription = stringResource(R.string.actor_image),                  //should be movie img, having issues with Android studio atm
+                contentDescription = stringResource(R.string.actor_image),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.height(170.dp)
             )
@@ -49,6 +56,15 @@ fun MovieCard(
 @Preview(showBackground = true)
 @Composable
 fun MovieCardPreview() {
-    val movie = MoviesMock.getMovieDetails().movie
-    MovieCard(movie = movie)
+    val movie = MoviesMock.getMoviesList()[0]
+    val movieCardViewState = MovieCardViewState(imageUrl = movie.imageUrl, title = movie.title)
+
+    val movieCardModifier = Modifier
+        .width(122.dp)
+        .height(179.dp)
+
+    MovieCard(item = movieCardViewState,
+        modifier = movieCardModifier,
+        onClick = { },
+        onFavouriteButtonClick = { })
 }

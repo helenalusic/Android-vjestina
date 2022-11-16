@@ -1,6 +1,8 @@
 package agency.five.codebase.android.movieapp.ui.component
 
 import agency.five.codebase.android.movieapp.mock.MoviesMock
+import agency.five.codebase.android.movieapp.R
+import agency.five.codebase.android.movieapp.mock.MoviesMock.getActor
 import agency.five.codebase.android.movieapp.model.Actor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,10 +11,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -33,10 +37,9 @@ fun ActorCard(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = Modifier
-            .padding(3.dp)
-            .size(width = 140.dp, height = 200.dp),
-        shape = RoundedCornerShape(13)
+        backgroundColor = Color.White,
+        shape = MaterialTheme.shapes.medium,
+        modifier = modifier,
     ) {
         Box {
             AsyncImage(
@@ -46,23 +49,23 @@ fun ActorCard(
                     .build(),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .height(200.dp)
+                modifier = modifier
+                    .height(dimensionResource(id = R.dimen.cast_member_image_height)),
             )
         }
         Box {
             Column {
                 Box (
-                    modifier = Modifier
+                    modifier = modifier
                         .height(150.dp)
                 )
                 Text(
                     text = actorCardViewState.name,
-                    fontSize = 12.sp,
+                    style = MaterialTheme.typography.h3,
                     fontWeight = FontWeight.SemiBold,
                     fontFamily = FontFamily.Serif,
                     color = Color.White,
-                    modifier = Modifier
+                    modifier = modifier
                         .background(Color.Black.copy(0.7f))
                         .padding(start = 10.dp, top = 5.dp)
                         .width(140.dp)
@@ -70,11 +73,11 @@ fun ActorCard(
                 )
                 Text(
                     text = actorCardViewState.character,
-                    fontSize = 9.sp,
+                    style = MaterialTheme.typography.h4,
                     fontStyle = FontStyle.Italic,
                     fontFamily = FontFamily.Serif,
                     color = Color.White,
-                    modifier = Modifier
+                    modifier = modifier
                         .background(Color.Black.copy(0.7f))
                         .padding(start = 10.dp)
                         .width(140.dp)

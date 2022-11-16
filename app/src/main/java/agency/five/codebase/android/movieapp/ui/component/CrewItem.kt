@@ -21,8 +21,12 @@ data class CrewItemViewState(
 )
 
 @Composable
-fun CrewItem(viewState: CrewItemViewState){
-    Column {
+fun CrewItem(
+    viewState: CrewItemViewState,
+    modifier: Modifier = Modifier,
+){
+
+    Column(modifier) {
         Text(
             text = viewState.name,
             fontSize = 14.sp,
